@@ -56,8 +56,7 @@
     .navbar {
         position:sticky;
         width: 100%;
-        height: 15vh;
-        min-height: 90px;
+        min-height: 110px;
         top:0;
         background: white;
     }
@@ -82,6 +81,16 @@
       color: #591F56;
     }
 
+    .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .selectedBox{
+        box-shadow: 0 0 0 99999px rgba(0, 0, 0, .4);
+    }
     </style>
 <div>
   <nav class="flex justify-between items-center h3 b--purple bb navbar bw5">
@@ -98,12 +107,19 @@
         </div>
       </a>
       <div class="f4 purple ml3 mb1">Learning Framework in Action</div>
+      
     </div>
-    <!-- <div class="flex flex-row mr2">
-      <div class="flex-grow pl3 pr3 pt2 flex items-center b--purple bw1">
-        <div class="f4 link dib dim purple pointer">About</div>
+    <div class="flex flex-row mr2">
+      <div onclick="showAboutRubricsModal()" class="flex-grow pl3 pr3 pt2 flex items-center b--purple br bw1">
+        <div class="f5 link dib dim purple pointer">About Rubrics</div>
       </div>
-    </div> -->
+      <div class="flex-grow pl3 pr3 pt2 flex items-center b--purple br bw1">
+        <div onclick="showInstructionsModal()" class="f5 link dib dim purple pointer">Instructions</div>
+      </div>
+      <div class="flex-grow pl3 pr3 pt2 flex items-center b--purple bw1">
+        <div class="f5 link dib dim purple pointer">Sign out</div>
+      </div>
+    </div>
   </nav>
 </div>
 </head>
@@ -364,10 +380,34 @@
     </div>
 </div>
 </div>
-<div class="ml2 mt3 mr5 flex flex-row-reverse">
+<div class="ml2 mt1 mr5 mb5 flex flex-row-reverse">
   <button onclick="downloadRubric()" class="pointer grow bg-purple ba white pa1 pl3 pr3 b--purple br2">Download Rubric</button>
 </div>
 
+<!-- modal -->
+<div id="AboutRubricsModal" class="ba b--purple pa4 br4 bg-white modal selectedBox shadow-4" style="display:none;">
+  <p class="purple b f4 mb4">About Rubrics</p>
+    <div class="ml2 dark-gray mb4">
+      <p>Rubrics are ‘rules’ to guide teacher judgements as they assess student work. They establish observable evidence, in the form of what a student can say, do, make or write, and they promote reliable and consistent in judgement-based assessments.</p>
+      <p>This interactive rubric presents each strand separately with its own set of rubrics. It is intended to help teachers assess how well student learning is demonstrated without feeling locked into a singular column. While some strands may be interdependent, a student at one level on one strand is not automatically at a comparable level on other strands.</p>
+    </div>
+    <div class="flex flex-row-reverse">
+      <button onclick="closeModal()" class="pointer grow bg-purple ba white pa1 pl3 pr3 b--purple">ok</button>
+    </div>
+  </div>
+
+  <!-- modal -->
+<div id="InstructionsModal" class="ba b--purple pa4 br4 bg-white modal selectedBox shadow-4" style="display:none;">
+  <p class="purple b f4 mb4">Instructions</p>
+    <div class="ml2 dark-gray mb4">
+      <p>Instructions here: for each strand that appears, click on the appropriate descriptor, etc. […]</p>
+    </div>
+    <div class="flex flex-row-reverse">
+      <button onclick="closeModal()" class="pointer grow bg-purple ba white pa1 pl3 pr3 b--purple">ok</button>
+    </div>
+  </div>
+  
+  
 <!-- Hidden doc export -->
 <div id="wordDocSource" style="display:none;">
   <h1 id='htmlSource'>Charlie d'Angelo</h1>
@@ -479,6 +519,21 @@
 
       document.body.removeChild(link);
       };
+
+      function showAboutRubricsModal(){
+        document.getElementById('AboutRubricsModal').style.display = 'block';
+        document.getElementById('InstructionsModal').style.display = 'none'
+      }
+
+      function showInstructionsModal(){
+        document.getElementById('InstructionsModal').style.display = 'block'
+        document.getElementById('AboutRubricsModal').style.display = 'none';
+      }
+
+      function closeModal(){
+        document.getElementById('AboutRubricsModal').style.display = 'none';
+        document.getElementById('InstructionsModal').style.display = 'none'
+      }
   </script>
 </body>
 </html>
