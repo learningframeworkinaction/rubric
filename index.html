@@ -14,26 +14,9 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
     <script>
         function printerDiv(divID) {
-        //Get the HTML of div
-
-        var divElements = document.getElementById(divID).innerHTML;
-
-        //Get the HTML of whole page
-        var oldPage = document.body.innerHTML;
-
-        //Reset the pages HTML with divs HTML only
-
-            document.body.innerHTML = 
-
-            "<html><head><title></title></head><body>" + 
-            divElements + "</body>";
-
-
-        //Print Page
-        window.print();
-
-        //Restore orignal HTML
-        document.body.innerHTML = oldPage;
+          var printwin = window.open("");
+          printwin.document.write(document.getElementById(divID).innerHTML);
+          printwin.print();
 
         }
   </script>
