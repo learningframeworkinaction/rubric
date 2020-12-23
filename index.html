@@ -13,20 +13,29 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
     <script>
-      //  var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-      //       "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-      //       "xmlns='http://www.w3.org/TR/REC-html40'>"+
-      //       "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-      //  var footer = "</body></html>";
-      //  var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
-       
-      //  var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-      //  var fileDownload = document.createElement("a");
-      //  document.body.appendChild(fileDownload);
-      //  fileDownload.href = source;
-      //  fileDownload.download = 'document.doc';
-      //  fileDownload.click();
-      //  document.body.removeChild(fileDownload);
+        function printerDiv(divID) {
+        //Get the HTML of div
+
+        var divElements = document.getElementById(divID).innerHTML;
+
+        //Get the HTML of whole page
+        var oldPage = document.body.innerHTML;
+
+        //Reset the pages HTML with divs HTML only
+
+            document.body.innerHTML = 
+
+            "<html><head><title></title></head><body>" + 
+            divElements + "</body>";
+
+
+        //Print Page
+        window.print();
+
+        //Restore orignal HTML
+        document.body.innerHTML = oldPage;
+
+        }
   </script>
 
   <script>
@@ -128,9 +137,9 @@
       
     </div>
     <div class="flex flex-row mr2">
-      <!-- <div onClick="generatePDF()" class="flex-grow pl3 pr3 pt2 flex items-center b--purple br bw1">
-        <div class="f5 link dib dim purple pointer">Download rubric</div>
-      </div> -->
+      <div onClick="printerDiv('printView')" class="flex-grow pl3 pr3 pt2 flex items-center b--purple br bw1">
+        <div class="f5 link dib dim purple pointer">Print rubric</div>
+      </div>
       <div onclick="showPrintView()" class="flex-grow pl3 pr3 pt2 flex items-center b--purple br bw1">
         <div class="f5 link dib dim purple pointer">Print view</div>
       </div>
